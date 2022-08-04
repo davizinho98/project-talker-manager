@@ -59,6 +59,27 @@ talkerRouter
 },
 );
 
+talkerRouter
+  .put(
+    '/:id',
+    validateTokenUser,
+    validateName,
+    validateAge,
+    validateTalk,
+    validateWatchedAt,
+    validateRate,
+    async (req, res) => {
+  const { name, age, talk: { watchedAt, rate } } = req.body;
+  const { id } = req.params;
+  const talkers = await readTalkers();
+  const talkerIndex = talkers
+    .findIndex((talker) => talker.id === Number(id));
+  talkers[talkerIndex] = { ...talkers[talkerIndex], name, age, talk: { watchedAt, rate } };
+  await writeTalkers(talkers);
+  res.status(200).json(talkers[talkerIndex]);
+},
+);
+
 module.exports = {
   talkerRouter,
 };

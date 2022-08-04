@@ -8,9 +8,14 @@ const readTalkers = async () => {
   return data;
 };
 
+const writeTalkers = async (talker) => {
+  await fs.writeFile('./talker.json', JSON.stringify(talker));
+};
+
 const generateToken = () => crypto.randomBytes(8).toString('hex');
 
 module.exports = {
   readTalkers,
+  writeTalkers,
   generateToken,
 };

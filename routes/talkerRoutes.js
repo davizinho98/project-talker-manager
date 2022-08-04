@@ -11,6 +11,23 @@ const { readTalkers, writeTalkers } = require('../utils');
 
 const talkerRouter = express.Router();
 
+talkerRouter.get('/search', validateTokenUser, async (req, res) => {
+  const { q } = req.query;
+  const talkers = await readTalkers();
+
+  if (!q || q === '') {
+    return res.status(200).json(talkers);
+  }
+
+  const talkersFiltered = talkers
+    .filter((talker) => talker.name.toLowerCase().includes(q.toLowerCase()));
+  if (talkersFiltered.length === 0) {
+    res.status(200).json([]);
+  }
+
+  res.status(200).json(talkersFiltered);
+});
+
 talkerRouter.get('/', async (_req, res) => {
   const talkers = await readTalkers();
 

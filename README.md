@@ -1,4 +1,4 @@
-# Docker To Do List
+# Talker Manager
 
 Projeto da [Trybe](https://www.betrybe.com/ "Trybe") - API para gestão de palestrantes feita em Node.js.
 

@@ -9,3 +9,4 @@ Foi desenvolvido uma API de um CRUD (Create, Read, Update e Delete) de palestran
 ## Tecnologias
 
 - Node.js
+- Docker
